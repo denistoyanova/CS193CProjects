@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+var univArray = new Array(
+			{name: "Stanford University", nickname: "Stanford", ownership: "private", SATh: 1570, SATl: 1380, tuition: 44757},
+			{name: "University of California, Berkeley", nickname: "UC Berkeley", ownership: "public", SATh: 1500, SATl: 1250, tuition: 13844},
+			{name: "University of California, Santa Cruz", nickname: "UC Santa Cruz", ownership: "public", SATh: 1280, SATl: 1000, tuition: 13398},
+			{name: "San Francisco State University", nickname: "SFSU", ownership: "public", SATh: 1110, SATl: 880, tuition: 6468},
+			{name: "San Jose State University", nickname: "SJSU", ownership: "public", SATh: 1160, SATl: 880, tuition: 9496},
+			{name: "Sonoma State University", nickname: "Sonoma State", ownership: "public", SATh: 1090, SATl: 880, tuition: 7276},
+			{name: "California State University, East Bay", nickname: "CalState East Bay", ownership: "public", SATh: 1010, SATl: 800, tuition: 6550, room: 6435},
+			{name: "University of San Francisco", nickname: "USF", ownership: "private", SATh: 1270, SATl: 1070, tuition: 41450},
+			{name: "Santa Clara University", nickname: "SCU", ownership: "private", SATh: 1380, SATl: 1190, tuition: 43812},
+			{name: "Mills College", nickname: "Mills College", ownership: "private", SATh: 1250, SATl: 1040, tuition: 42918}
+			);
+		
+
+		function update(){
+			
+			var newSchool;
+			var newHigh;
+			var newLow;
+			var newTuit;
+			var numFound = 10;
+			var result ="<tr class='first'><td class='left1'>Name</td><td class='left2'>SAT High</td><td class='right2'>SAT Low</td><td class='right1'>Tuition</td></tr>"
+			for (var i = 0; i < numFound; i++) {
+				newSchool = univArray[i].nickname;
+				newHigh = univArray[i].SATh;
+				newLow = univArray[i].SATl;
+				newTuit = univArray[i].tuition;
+				//check if even or odd!
+				if(i % 2 === 0){
+					result+="<tr class='restEven'><td>" + newSchool + "</td><td>" + newHigh + "</td><td>" + newLow + "</td><td>" + newTuit + "</td></tr>";
+				}else{
+					result+="<tr class='rest'><td>" + newSchool + "</td><td>" + newHigh + "</td><td>" + newLow + "</td><td>" + newTuit + "</td></tr>";
+				}
+    			
+			};
+			var row = document.getElementById("tableThing");
+			row.innerHTML = result;
+			
+		}
+
+	</script>
+	<style type="text/css">
+	table{
+		border: 2px solid black;
+	}
+	.first .left1 {
+		width: 30%;
+		border: 2px solid black;
+		background: black;
+		color: white;
+		margin: 0px;
+	}
+	.left2, .right2, .right1{
+		width: 20%;
+		border: 2px solid black;
+		background: black;
+		color: white;
+		margin: 0px;
+	}
+	.rest{
+
+	}
+	.restEven{
+		background-color: #eee;
+	}
+
+	</style>
+	<meta charset="UTF-8">
+	<title>Stanford Data</title>
+</head>
+<body onclick="fillTable()">
+	<h1 class="title">Geographic Origin of Stanford Undergrads</h1>
+	<div class="v">
+	<table id="tableThing">
+		<tr class="first">
+			<td class="left1">Name</td>
+			<td class="left2">SAT High</td>
+			<td class="right2">SAT Low</td>
+			<td class="right1">Tuition</td>
+		</tr>
+	</table>
+	</div>
+	<div class="update">
+		<input type="button" value="Update" onclick="update()">
+	</div>
+</body>
+</html>

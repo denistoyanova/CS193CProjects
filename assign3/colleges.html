@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>University Options</title>
+	<script type="text/javascript">
+		var univArray = new Array(
+			{name: "Stanford University", nickname: "Stanford", ownership: "private", SATh: 1570, SATl: 1380, tuition: 44757},
+			{name: "University of California, Berkeley", nickname: "UC Berkeley", ownership: "public", SATh: 1500, SATl: 1250, tuition: 13844},
+			{name: "University of California, Santa Cruz", nickname: "UC Santa Cruz", ownership: "public", SATh: 1280, SATl: 1000, tuition: 13398},
+			{name: "San Francisco State University", nickname: "SFSU", ownership: "public", SATh: 1110, SATl: 880, tuition: 6468},
+			{name: "San Jose State University", nickname: "SJSU", ownership: "public", SATh: 1160, SATl: 880, tuition: 9496},
+			{name: "Sonoma State University", nickname: "Sonoma State", ownership: "public", SATh: 1090, SATl: 880, tuition: 7276},
+			{name: "California State University, East Bay", nickname: "CalState East Bay", ownership: "public", SATh: 1010, SATl: 800, tuition: 6550, room: 6435},
+			{name: "University of San Francisco", nickname: "USF", ownership: "private", SATh: 1270, SATl: 1070, tuition: 41450},
+			{name: "Santa Clara University", nickname: "SCU", ownership: "private", SATh: 1380, SATl: 1190, tuition: 43812},
+			{name: "Mills College", nickname: "Mills College", ownership: "private", SATh: 1250, SATl: 1040, tuition: 42918}
+			);
+		var found = new Array();
+
+		function findColleges(){
+			found = new Array();
+			if(document.getElementsByName("crit")[0].checked){
+				for (var i = 0; i < 10; i++) {
+					var own = univArray[i].ownership;
+					if(own === "public"){
+						found.push(univArray[i]); //TODO will this work??
+					}
+				};
+
+			}else if(document.getElementsByName("crit")[1].checked){
+				for (var i = 0; i < 10; i++) {
+					var own = univArray[i].ownership;
+					if(own === "private"){
+						found.push(univArray[i]); //TODO will this work??
+					}
+				};
+			}else{
+				//do nothing to the array!
+				for (var i = 0; i < 10; i++) {
+					found.push(univArray[i]); //TODO will this work??
+					
+				};
+			}
+
+			//NOW CHECK IN FOUND...
+			var tu = document.getElementsByName("cost")[0].value;
+			var hi = document.getElementsByName("highsat")[0].value;
+			var lo = document.getElementsByName("lowsat")[0].value;
+
+
+			//3 checks...
+			var priceBelow = false;
+			var isBelowMaxSAT = false;
+			var isAboveMinSAT = false;
+
+			if(tu === ""){
+				priceBelow = true; //true, therefore, don't check it later!
+			}
+			if(hi === ""){
+				isBelowMaxSAT = true; //true, therefore, don't check it later!
+			}
+			if(lo === ""){
+				isAboveMinSAT = true; //true, therefore, don't check it later!
+			}
+
+
+			//NOW REMOVE THE UNWANTED ONES
+			//first max tuition...
+			if(priceBelow == false){ // false, so there is a value
+				for (var i = 0; i < found.length; i++) {
+					if((found[i].tuition) > tu){ //if it is NOT acceptable and less than the max cost
+						found.splice(i--, 1);
+					}
+				};
+			}
+			if(isBelowMaxSAT == false){ // false, so there is a value
+				for (var i = 0; i < found.length; i++) {
+					if((found[i].SATh) > hi){ //if it is NOT acceptable and more than the max cost
+						found.splice(i--, 1);
+					}
+				};
+			}
+			if(isAboveMinSAT == false){ // false, so there is a value
+				for (var i = 0; i < found.length; i++) {
+					if((found[i].SATl) < lo){ //if it is NOT acceptable and less than the min sat
+						found.splice(i--, 1);
+					}
+				};
+			}	
+			
+			
+			update();
+		}
+
+		function update(){
+			
+			var newSchool;
+			var newHigh;
+			var newLow;
+			var newTuit;
+			var numFound = found.length;
+			var result ="<tr class='first'><td class='left1'>Name</td><td class='left2'>SAT High</td><td class='right2'>SAT Low</td><td class='right1'>Tuition</td></tr>"
+			for (var i = 0; i < numFound; i++) {
+				newSchool = found[i].nickname; //change to FOUND!
+				newHigh = found[i].SATh;
+				newLow = found[i].SATl;
+				newTuit = found[i].tuition;
+				var newTuit2;
+				if(newTuit.toString().length > 3){
+					newTuit2 = "$" + newTuit.toString().substring(0, newTuit.toString().length - 3) + "," + newTuit.toString().substring(newTuit.toString().length - 3) + ".00";
+				}else{
+					newTuit2 = "$" + newTuit.toString() + ".00";
+				}
+
+				//check if even or odd!
+				if(i % 2 === 0){
+					result+="<tr class='restEven'><td>" + newSchool + "</td><td>" + newHigh + "</td><td>" + newLow + "</td><td>" + newTuit2 + "</td></tr>";
+				}else{
+					result+="<tr class='rest'><td>" + newSchool + "</td><td>" + newHigh + "</td><td>" + newLow + "</td><td>" + newTuit2 + "</td></tr>";
+				}
+    			
+			};
+			var row = document.getElementById("tableThing");
+			row.innerHTML = result;
+			
+		}
+	</script>
+	<style type="text/css">
+		body{
+			font-family: sans-serif;
+		}
+		.left{
+			float:  left;
+		}
+		.right{
+			float: left;
+		}
+		.search{
+			border: solid black 2px;
+			margin: 20px; 
+		}
+		.search .title{
+			background-color: black;
+			color: white;
+			margin: 0px;
+			padding:5px;
+			text-align: center;
+		}
+		span{
+			font-size: 75%;
+		}
+		.tuition, .high, .low{
+			padding: 5px;
+		}
+		textarea{
+			margin-left: 10px;
+			padding-bottom: 5px;
+			border: 1px solid black;
+			resize: none;
+		}
+		.radios{
+			margin: 10px;
+		}
+		table{
+			border: 2px solid black;
+		}
+		.first .left1 {
+			width: 30%;
+			border: 2px solid black;
+			background: black;
+			color: white;
+			margin: 0px;
+		}
+		.left2, .right2, .right1{
+			width: 20%;
+			border: 2px solid black;
+			background: black;
+			color: white;
+			margin: 0px;
+		}
+		.rest{
+
+		}
+		.restEven{
+			background-color: #eee;
+		}
+	</style>
+	
+</head>
+<body>
+	<div class="all">
+		<h1 class="title">Bay Area Colleges and Universities</h1>
+		<div class="left">
+			<table id="tableThing">
+				<tr class="first">
+					<td class="left1">Name</td>
+					<td class="left2">SAT High</td>
+					<td class="right2">SAT Low</td>
+					<td class="right1">Tuition</td>
+				</tr>
+			</table>
+		</div>
+		<div class="right">
+			<div class="search">
+				<div class="title">
+					<p>Search Criteria</p>
+				</div>
+				<div class="radios">
+					<form name="pubpriv">
+						<input type="radio" name="crit" value="public">Public
+						<input type="radio" name="crit" value="private">Private
+						<input type="radio" name="crit" value="either">Don't Care
+					</form>
+				</div>
+				<div class="tuition">
+					Maximum Tuition <br><span>leave blank for don't care</span>
+					<textarea name="cost" rows="1"></textarea>
+				</div>
+				<div class="high">
+					Maximum High SAT <br><span>leave blank for don't care</span>
+					<textarea name="highsat" rows="1"></textarea>
+				</div>
+				<div class="low">
+					Minimum Low SAT <br><span>leave blank for don't care</span>
+					<textarea name="lowsat" rows="1"></textarea>
+				</div>
+
+			</div>
+			<div class="update">
+				<input type="button" value="Update" onclick="findColleges()">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

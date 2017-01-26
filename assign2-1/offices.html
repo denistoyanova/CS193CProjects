@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Offices in Tresidder Union</title>
+	<script type="text/javascript">
+		function doPopup(){
+			var popup;
+			if(document.getElementById("choice").value == "education"){
+				popup = window.open(null, "newWindow","width=700,height=400");
+				popup.document.writeln("<div style='font-family: sans-serif; font-weight: bold;'><h1>Residential Education (ResEd)</h1><h3>725-2800</h3><p style='float:left; width=80%; margin: 5px;'>The Office of Residential Education is responsible for developing the policies, programs, and staffing which support the intellectual, educational, and community-building activities in student residences.  Second Floor.</p><img src='resed.jpg' style='float:right;'></div>");
+			}else if(document.getElementById("choice").value == "services"){
+				popup = window.open(null, "newWindow","width=700,height=400");
+				popup.document.writeln("<div style='font-family: sans-serif; font-weight: bold;'><h1>Student Services Center</h1><h3>723-7772</h3><p style='float:left; width=80%; margin: 5px;'>Visit the Student Services Center for assistance with university billing, financial aid disbursements, refunds, cash advances, payroll deductions, enrollment, Stanford degree policies & procedures, Stanford ID card, forms pickup & drop-off, and more..  Second floor.</p><img src='seal-small.gif' style='float:right;'></div>");
+			}else if(document.getElementById("choice").value == "activities"){
+				popup = window.open(null, "newWindow","width=700,height=400");
+				popup.document.writeln("<div style='font-family: sans-serif; font-weight: bold;'><h1>Office of Student Activities (OSA)</h1><h3>723-2733</h3><p style='float:left; width=80%; margin: 5px;'>Services for student organizations, student-initiated major events and programs, and fraternities and sororities.  Second floor.</p><img src='seal-small.gif' style='float:right;'></div>");
+			}else if(document.getElementById("choice").value == "affairs"){
+				popup = window.open(null, "newWindow","width=700,height=400");
+				popup.document.writeln("<div style='font-family: sans-serif; font-weight: bold;'><h1>Vice-Provost of Student Affairs</h1><h3>725-0911</h3><p style='float:left; width=80%; margin: 5px;'>The Vice Provost for Student Affairs is responsible to the Provost for providing services and programs to undergraduate and graduate students in support of the academic mission of the University.  Second floor.</p><img src='seal-small.gif' style='float:right;'></div>");
+			}
+		}
+	</script>
+	<style type="text/css">
+		.all{
+			width: 640px;
+			margin: auto;
+
+			font-family: sans-serif;
+		}
+		.banner{
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.left{
+			float: left;
+			width: 540px;
+		}
+		.right{
+			float: right;
+			width: 100px;
+		}
+
+	</style>
+	
+</head>
+<body>
+	<div class = "all">
+		<div class="banner">
+			<img src="offices-bnr.gif">
+		</div>
+		<div class="rest">
+			<div class="left">
+				<p>
+					Tresidder Union houses a number of University Offices. Most of these offices are part of the Vice-Provost Student Affairs (VPSA) organization.<br><br>
+
+					To learn more about an individual office in Tresidder, select the name of the office from the pulldown menu below:
+				</p>
+				<select id="choice" onchange="doPopup()">
+					<option value="choose">Choose an Office</option>
+					<option value="education">Residential Education (ResEd)</option>
+				  	<option value="services">Student Services Center</option>
+				  	<option value="activities">Office of Student Activities (OSA)</option>
+				 	<option value="affairs">Vice-Provost of Student Affairs</option>
+				</select>
+			</div>
+			<div class="right">
+				<img src="seal.gif">
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

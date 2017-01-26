@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+
+<style>
+
+#all{
+	width:700px;
+}
+
+#top{
+	float: left;
+	width:100%;
+}
+h3, textarea, input{
+	float: left;
+	margin: 5px;
+}
+textarea{
+	resize:none;
+}
+</style>
+</head>
+<body>
+	<h1>
+		Yahoo Weather via AJAX
+	</h1>
+	<div id="all">
+		<div id="top">
+		 	<h3>Enter ZIP Code:</h3>
+		 	<textarea id="zip" rows="1" cols="10"></textarea>
+		 	<input id="weatherButton" type="button" value="Get Weather">
+		 	<input id="clearButton" type="button" value="Clear">
+		</div>
+		<textarea id="result" rows="25" cols="85">
+		</textarea>
+	</div>	
+
+	<script type="text/javascript">
+		var r;
+		function getInfo(){
+
+			r = new XMLHttpRequest();
+
+			var zipcode = document.getElementById("zip").value;
+			//works
+
+			var w = "http://web.stanford.edu/~psyoung/cgi-bin/a3.php?yws_path=" + encodeURIComponent("p=" + zipcode);
+			r.open('GET', w, true);
+			r.send();
+
+			r.onload = handleResponse;
+			
+		}
+
+		function handleResponse(){
+			var loc;
+			var condition;
+			loc = r.responseXML.getElementsByTagName("location")[0];
+			if(loc == undefined){
+				loc = r.responseXML.getElementsByTagName("yweather:location")[0];
+			}
+			
+			condition = r.responseXML.getElementsByTagName("condition")[0];
+			if(condition == undefined){
+				condition = r.responseXML.getElementsByTagName("yweather:condition")[0];
+			}
+			
+
+			var city = loc.getAttribute('city');
+			var temp = condition.getAttribute('temp');
+			var text = condition.getAttribute('text');
+
+			var result = city + ": " + temp + ", " + text + "\n";
+
+			var textStuff = document.createTextNode(result);
+			document.getElementById("result").appendChild(textStuff); 
+		}
+
+		function clear(){
+			document.getElementById("result").value = "";
+			document.getElementById("zip").value = "";
+		}
+
+		
+		
+
+		document.getElementById("clearButton").addEventListener("click", clear);
+		document.getElementById("weatherButton").addEventListener("click", getInfo);
+
+	</script>
+
+</body>
+</html>

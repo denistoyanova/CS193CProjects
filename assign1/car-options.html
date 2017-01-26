@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="personal.css">
+	<meta charset="UTF-8">
+	<title>Deni's Webpage</title>
+	<style type="text/css">
+		.all{
+			width: 840px;
+		}
+		.left{
+			width: 400px;
+			margin: 10px;
+		}
+		.right{
+			width: 400px;
+			margin: 10px;
+		}
+		.name{
+			font-family: sans-serif;
+			font-size: 22pt;
+		}
+		.title{
+			color: white;
+			background: #eee;
+			border: solid 1px black;
+			padding: 5px;
+		}
+		.config{
+
+		}
+	</style>
+</head>
+<body>
+	<h1 class="name">Configure Your GT Super Sportscar</h1>
+	<div class="all"></div>
+		<div class="left">
+			<form name="config">
+				<h3 class="title">Configuration</h3>
+				<label><input type="radio">GT Manual<p>$17,790.00</p><br></label>
+				<label><input type="radio">GT Automatic<p>$18,590.00</p><br></label>
+				<label><input type="radio">GT-S Manual<p>$22,455.00</p><br></label>
+				<label><input type="radio">GT-S Sportshift<p>$23,155.00</p><br></label>
+			</form>
+
+			<form name="factory">
+				<h3 class="title">Factory Options</h3>
+				<label><input type="radio">Option Combo 1<p>$1235.00</p><br>
+					<ul>
+						<li>Power Windows, Doors, Cruise Control</li>
+					</ul>
+				</label>
+				<label><input type="radio">Option Combo 2<p>$3354.00</p><br>
+					<ul>
+						<li>Rear Spoiler and Fog Lamps</li>
+						<li>Keyless Entry</li>
+						<li>Power Tilt and Slide Moonroof</li>
+						<li>Power Windows, Doors, Cruise Control</li>
+					</ul>
+				</label>
+				<label><input type="radio">No Combo<p>$0</p><br></label>
+			</form>
+
+			<form name="dealer">
+				<h3 class="title">Dealer Options</h3>
+				<label><input type="checkbox">Upgraded Stereo System<p>$550.00</p><br></label>
+				<label><input type="checkbox">VIP Security System<p>$399.00</p><br></label>
+				<label><input type="checkbox">Auto Dimming Mirror<p>$295.00</p><br></label>
+			</form>
+
+			<div class="price">
+				<h3 class="title">Total Price</h3>
+				<textarea></textarea>
+				<button>Calculate Total</button>
+			</div>
+		</div>
+
+		<div class="right">
+			<form name="color">
+				<h3 class="title">Choose a Color</h3>
+				<select name="select" size="5">
+					<option value="red">Red</option>
+					<option value="blue">Blue</option>
+					<option value="silver">Silver</option>
+					<option value="white">White</option>
+					<option value="black">Black</option>
+				</select>
+
+				<img class="car" src="" alt="car">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

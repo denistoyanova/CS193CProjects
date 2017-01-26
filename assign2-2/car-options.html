@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Car Options</title>
+	<script type="text/javascript">
+
+	function calculatePrice(){
+		var total = 0.0;
+		if(document.getElementsByName("config")[0].checked){
+			total += parseFloat(document.getElementsByName("config")[0].value);
+		}else if(document.getElementsByName("config")[1].checked){
+			total += parseFloat(document.getElementsByName("config")[1].value);
+		}else if(document.getElementsByName("config")[2].checked){
+			total += parseFloat(document.getElementsByName("config")[2].value);
+		}else if(document.getElementsByName("config")[3].checked){
+			total += parseFloat(document.getElementsByName("config")[3].value);
+		}
+
+		if(document.getElementsByName("factory")[0].checked){
+			total += parseFloat(document.getElementsByName("factory")[0].value);
+		}else if(document.getElementsByName("factory")[1].checked){
+			total += parseFloat(document.getElementsByName("factory")[1].value);
+		}else if(document.getElementsByName("factory")[2].checked){
+			total += parseFloat(document.getElementsByName("factory")[2].value);
+		}
+
+		if(document.getElementsByName("dealer")[0].checked){
+			total += parseFloat(document.getElementsByName("dealer")[0].value);
+		}if(document.getElementsByName("dealer")[1].checked){
+			total += parseFloat(document.getElementsByName("dealer")[1].value);
+		}if(document.getElementsByName("dealer")[2].checked){
+			total += parseFloat(document.getElementsByName("dealer")[2].value);
+		}
+
+		var sringTot;
+
+		if(total.toString().length > 3){
+			stringTot = "$" + total.toString().substring(0, total.toString().length - 3) + "," + total.toString().substring(total.toString().length - 3) + ".00";
+		}else{
+			stringTot = "$" + total.toString() + ".00";
+		}
+
+		document.getElementById("total").value = stringTot;
+	}
+
+	</script>
+	<style type="text/css">
+		.all{
+			width: 900px;
+			font-family: sans-serif;
+		}
+		.left{
+			width: 400px;
+			float: left;
+			margin: 10px;
+		}
+		.right{
+			float: left;
+			width: 400px;
+			margin: 10px;
+		}
+		.name{
+			font-size: 22pt;
+		}
+		.title{
+			color: white;
+			background: #808080;
+			border: solid 1px black;
+			padding: 5px;
+			margin-right: 5px;
+			margin-left: 5px;
+			margin-top: 5px;
+		}
+		form, .price, .choose{
+			border: 1px solid black;
+			margin-top: 10px;
+			padding:10px;
+		}
+		span{
+			text-align: right;
+			float: right;
+			margin-right: 5px;
+		}
+		label{
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+	</style>
+	
+</head>
+<body>
+	<div class="all">
+	<h1 class="name">Configure Your GT Super Sportscar</h1>
+		<div class="left">
+			<form name="configure" action="">
+				<h3 class="title">Configuration</h3>
+				<input type="radio" name="config" value="17790.00">GT Manual<span>$17,790.00</span><br>
+				<input type="radio" name="config" value="18590.00">GT Automatic<span>$18,590.00</span><br>
+				<input type="radio" name="config" value="22455.00">GT-S Manual<span>$22,455.00</span><br>
+				<input type="radio" name="config" value="23155.00">GT-S Sportshift<span>$23,155.00</span><br>
+			</form>
+		
+			<form name="fact">
+				<h3 class="title">Factory Options</h3>
+				<label><input type="radio" name="factory" value="1235.00">Option Combo 1<span>$1235.00</span><br>
+					<ul>
+						<li>Power Windows, Doors, Cruise Control</li>
+					</ul>
+				</label>
+				<label><input type="radio" name="factory" value="3354.00">Option Combo 2<span>$3354.00</span><br>
+					<ul>
+						<li>Rear Spoiler and Fog Lamps</li>
+						<li>Keyless Entry</li>
+						<li>Power Tilt and Slide Moonroof</li>
+						<li>Power Windows, Doors, Cruise Control</li>
+					</ul>
+				</label>
+				<label><input type="radio" name="factory" value="0.00">No Combo<span>$0</span><br></label>
+			</form>
+
+			<form name="deal">
+				<h3 class="title">Dealer Options</h3>
+				<label><input type="checkbox" name="dealer" value="550.00">Upgraded Stereo System<span>$550.00</span><br></label>
+				<label><input type="checkbox" name="dealer" value="399.00">VIP Security System<span>$399.00</span><br></label>
+				<label><input type="checkbox"name="dealer" value="295.00">Auto Dimming Mirror<span>$295.00</span><br></label>
+			</form>
+
+			<div class="price">
+				<h3 class="title">Total Price</h3>
+				<textarea id="total" rows="1"></textarea>
+				<input type="button" value="Calculate" onclick="calculatePrice()">
+			</div>
+		</div>
+
+		<div class="right">
+			<div class="choose">
+				<h3 class="title">Choose a Color</h3>
+				<select size="5" onchange="document.getElementById('cars').src=this.options[this.selectedIndex].value;">
+					<option value="red.jpg" checked="checked" onclick>Red</option>
+					<option value="blue.jpg">Blue</option>
+					<option value="silver.jpg">Silver</option>
+					<option value="white.jpg">White</option>
+					<option value="black.jpg">Black</option>
+				</select>
+				<img id="cars" src="red.jpg" alt="car">
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

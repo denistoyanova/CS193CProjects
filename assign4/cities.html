@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<style>
+	#all{
+		width: 400px;
+	}
+	#top{
+		width: 300px;
+	}
+	#bot{
+		width: 300px;
+		margin-top: 30px; 
+	}
+	ul{
+		margin: 0px;
+	}
+	textarea{
+		resize:none;
+		margin: 0px;
+	}
+	h3{
+		float: left;
+		margin: 0px;
+	}
+
+
+</style>
+
+<script src="angular.js"></script>
+</head>
+<body ng-init="cities=['Mumbai, Asia, 20400000', 'New York, North America, 21295000', 'San Francisco, North America, 5780000', 'London, Europe, 8580000', 'Rome, Europe, 2715000', 'Melbourne, Australia, 3900000', 'San Jose, North America, 7354555', 'Rostov-on-Don, Europe, 1052000'];">
+<h1>Cities</h1>
+<div id="all">
+
+	<div id="top">
+		<h3>Search:</h3><textarea rows="1" cols="25" id="search" ng-model="searcher"></textarea>
+	</div>
+
+	<div id="bot">
+		<ul>
+			<li ng-repeat="city in cities | filter: searcher">{{city}}</li>
+		</ul>
+	</div>
+
+</div>
+</body>
+</html>
